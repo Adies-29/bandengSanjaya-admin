@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id          Int      @id @default(autoincrement())
+  username    String   @unique
+  password    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String
+  products    Product[]
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String   @db.Text
+  price       Float
+  image       String
+  badge       String?  // Misal: "BEST SELLER", "Kemasan Isi 2"
+  weight_info String?  // Misal: "1 kg (isi 5-6 ekor)"
+  category_id Int
+  category    Category @relation(fields: [category_id], references: [id])
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("products")
+}
+
+model StoreInfo {
+  id                Int      @id @default(autoincrement())
+  name              String   @default("Bandeng Sanjaya")
+  whatsapp_number   String
+  wa_template_text  String   @db.Text
+  address           String   @db.Text
+  google_maps_url   String?  @db.Text
+  operational_hours String
+  instagram_url     String?
+  facebook_url      String?
+  description       String   @db.Text
+  logo              String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  @@map("store_infos")
+}
+
+model Banner {
+  id          Int      @id @default(autoincrement())
+  image       String
+  title       String
+  description String   @db.Text
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("banners")
+}
+
+model Feature {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @db.Text
+  icon        String
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("features")
+}
+
+model ContactMessage {
+  id         Int      @id @default(autoincrement())
+  name       String
+  phone      String
+  subject    String
+  message    String   @db.Text
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("contact_messages")
+}
