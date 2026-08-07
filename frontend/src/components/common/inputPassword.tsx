@@ -1,0 +1,1 @@
+interface InputPasswordProps extends React.Attributes
