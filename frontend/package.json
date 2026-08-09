@@ -12,10 +12,12 @@
   "dependencies": {
     "@tanstack/react-query": "^5.101.4",
     "@tanstack/react-query-devtools": "^5.101.4",
+    "@tanstack/react-table": "^8.20.5",
     "axios": "^1.19.0",
     "lucide-react": "^1.29.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-hook-form": "^7.85.0",
     "react-router-dom": "^6.28.0",
     "zustand": "^5.0.14"
   },
