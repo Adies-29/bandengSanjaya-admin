@@ -23,7 +23,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps> (
                     )}
                     <input
                     ref={ref}
-                    className={`w-full py-3 bg-slate-900/60 border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 transition-all \
+                    className={`w-full py-3 border rounded-xlplaceholder-slate-500 focus:outline-none focus:ring-2 transition-all
                         ${icon ? 'pl-11 pr-4' : 'px-4'}
                         ${error ? 'border-red-500 focus:ring-red-500' : 'border-slate-700 focus:ring-emerald-500'}
                         ${className}`}

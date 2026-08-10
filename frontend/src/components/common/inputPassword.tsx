@@ -27,7 +27,7 @@ export const InputPassword = forwardRef<HTMLInputElement, InputPasswordProps>(
                     <input
                         ref={ref}
                         type= {showPass ? 'text' : 'password'}
-                        className={`w-full py-3 bg-slate-900/60 border rounded-xl text-white placeholder-slate-500 focus:otuline-none focus:ring-2 transition-all 
+                        className={`w-full py-3 border rounded-xl placeholder-slate-500 focus:otuline-none transition-all 
                             ${icon ? 'pl-11' : 'pl-4'}
                             pr-11 ${error ? 'border-red-500 focus:ring-red-500' : 'border-slate-700 focus:ring-offset-emerald-500'}
                             ${className}`}

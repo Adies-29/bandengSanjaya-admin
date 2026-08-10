@@ -5,7 +5,7 @@ interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     title: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -19,7 +19,7 @@ export const Modal: React.FC<ModalProps> = ({
             if(e.key === 'Escape') onClose();
         };
         if(isOpen) {
-            document.body.style.overflow = 'hiidden';
+            document.body.style.overflow = 'hidden';
             window.addEventListener('keydown', handleKeyDown);
         }
         return () => {
@@ -33,7 +33,7 @@ export const Modal: React.FC<ModalProps> = ({
     return (
         <div className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in'>
             <div
-                className='relative w-full wax-w-lg bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh'
+                className='relative w-full max-w-lg bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]'
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className='flex items-center justify-between px-6 py-4 border-b border-slate-700'>
