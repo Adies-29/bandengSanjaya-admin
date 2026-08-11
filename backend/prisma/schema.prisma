@@ -100,3 +100,18 @@ model ContactMessage {
 
   @@map("contact_messages")
 }
+
+model Blog {
+  id            Int @id @default(autoincrement())
+  title         String
+  slug          String    @unique
+  excerpt       String    @db.Text
+  content       String    @db.Text
+  image         String    
+  author        String    @default("Admin Bandeng Sanjaya")
+  is_published  Boolean   @default(true)
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+
+  @@map("blogs")
+}
