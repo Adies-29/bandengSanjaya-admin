@@ -9,6 +9,7 @@ import storeInfoRoutes from "./routes/storeInfoRoutes";
 import bannerRoutes from "./routes/bannerRoutes";
 import featureRoutes from "./routes/featureRoutes";
 import contactMessageRoutes from "./routes/contactMessageRoutes";
+import blogRoutes from "./routes/blogRoutes";
 
 
 dotenv.config();
@@ -30,6 +31,8 @@ app.use('/api/feature', featureRoutes);
 app.use('/api/features', featureRoutes);
 app.use('/api/contact', contactMessageRoutes);
 app.use('/api/contact-messages', contactMessageRoutes);
+app.use('/api/blog', blogRoutes);
+app.use('/api/blogs', blogRoutes);
 
 const PORT = process.env.PORT || 5000;
 
