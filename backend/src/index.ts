@@ -22,9 +22,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/product', productRoutes);
+app.use('/api/products', productRoutes);
 app.use('/api/store-info', storeInfoRoutes);
-app.use('api/banners', bannerRoutes);
+app.use('/api/banner', bannerRoutes);
+app.use('/api/banners', bannerRoutes);
+app.use('/api/feature', featureRoutes);
 app.use('/api/features', featureRoutes);
+app.use('/api/contact', contactMessageRoutes);
 app.use('/api/contact-messages', contactMessageRoutes);
 
 const PORT = process.env.PORT || 5000;
