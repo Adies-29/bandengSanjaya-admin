@@ -2,15 +2,15 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './routes/protectedRoute';
 import { AdminLayout } from './components/layout/AdminLayout';
 
-// Halaman-Halaman Admin
 import Login from './pages/login';
-import Dashboard from './pages/Dashboard';
 import Categories from './pages/categories';
+import Dashboard from './pages/Dashboard';
 import Products from './pages/products';
 import StoreInfo from './pages/storeInfo';
 import Banners from './pages/banners';
 import Features from './pages/features';
 import Messages from './pages/messages';
+import Blogs from './pages/blogs';
 
 function App() {
   return (
@@ -24,14 +24,15 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/store-info" element={<StoreInfo />} />
             <Route path="/banners" element={<Banners />} />
             <Route path="/features" element={<Features />} />
             <Route path="/messages" element={<Messages />} />
+            <Route path="/store-info" element={<StoreInfo />} />
+            <Route path="/blogs" element={<Blogs />} />
           </Route>
         </Route>
 
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/categories" replace />} />
       </Routes>
     </BrowserRouter>
   );
