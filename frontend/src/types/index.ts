@@ -30,7 +30,7 @@ export interface Category {
     created_at?: string;
     updated_at?: string;
     _count?: {
-        prodcts: number;
+        products: number;
     };
 }
 
@@ -40,6 +40,7 @@ export interface Product {
     name: string;
     description: string;
     price: number;
+    image: string;
     badge?: string | null;
     weight_info?: string | null;
     category_id: number;
@@ -93,10 +94,24 @@ export interface ContactMessage {
     id: number;
     name: string;
     phone: string;
+    email?: string;
     subject: string;
     message: string;
     is_read: boolean;
     created_at?: string;
     updated_at?: string;
+}
 
+
+export interface Blog {
+    id: number;
+    title: string;
+    slug: string;
+    excerpt: string;
+    content: string;
+    image: string;
+    author: string;
+    is_published: boolean;
+    created_at?: string;
+    updated_at?: string;
 }
