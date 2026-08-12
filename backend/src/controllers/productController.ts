@@ -180,7 +180,8 @@ export const updateProduct = async (req: Request, res: Response) => {
             });
         }
 
-        const { name, description, price, badge, weight_info, caetgory_id } = req.body;
+        const { name, description, price, badge, weight_info, category_id, caetgory_id } = req.body;
+        const rawCategoryId = category_id || caetgory_id;
         const image = req.file ? req.file.path : cekProduct.image;
 
         const updateData: any = {
@@ -188,12 +189,12 @@ export const updateProduct = async (req: Request, res: Response) => {
         };
 
         if (name) updateData.name = name.trim();
-        if (description) updateData.deleteCategories = description.trim();
+        if (description) updateData.description = description.trim();
         if (price) updateData.price = parseFloat(price as string);
         if (badge !==  undefined) updateData.badge = badge ? badge.trim() : null;
         if (weight_info !== undefined) updateData.weight_info = weight_info ? weight_info.trim() : null;
-        if (caetgory_id) {
-            const parseCategoryId = parseInt(caetgory_id as string, 10);
+        if (rawCategoryId) {
+            const parseCategoryId = parseInt(rawCategoryId as string, 10);
 
             const categoryCek = await prisma.category.findUnique({
                 where: { id: parseCategoryId },
@@ -205,7 +206,7 @@ export const updateProduct = async (req: Request, res: Response) => {
                     message: 'Category tidak ditemukan',
                 });
             }
-            updateData.caetgory_id = parseCategoryId
+            updateData.category_id = parseCategoryId;
 
         }
 
