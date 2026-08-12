@@ -9,7 +9,7 @@ export const AdminLayout: React.FC = () => {
     const [SidebarOpen, setSidebarOpen] = useState(false);
 
     return(
-        <div className="min-h-screen bg-slate-900 text-slate-100 flex">
+        <div className="min-h-screen bg-slate-50 text-slate-800 flex">
             <Sidebar isOpen={SidebarOpen} onClose={() => setSidebarOpen(false)}/>
             <div className="flex-1 flex flex-col lg:pl-64 min-w-0">
                 <Header onToggleSidebar={() => setSidebarOpen(!SidebarOpen)} />

@@ -50,8 +50,8 @@ export function Table<T>({
   });
 
   return (
-    <div className="bg-slate-800 rounded-2xl shadow-xl overflow-hidden space-y-4 p-4 border border-slate-700/80">
-      <div className="flex items-center justify-between pb-2 border-b border-slate-700/60">
+    <div className="bg-white rounded-2xl shadow-sm overflow-hidden space-y-4 p-4 border border-slate-200">
+      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
         <div className="relative w-full max-w-xs">
           <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
@@ -59,18 +59,18 @@ export function Table<T>({
             value={globalFilter ?? ''}
             onChange={(e) => setGlobalFilter(e.target.value)}
             placeholder={searchPlaceholder}
-            className="w-full pl-10 pr-4 py-2 bg-slate-900/60 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-all"
           />
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-slate-700/60">
+      <div className="overflow-x-auto rounded-xl border border-slate-200">
         <table className="w-full text-left border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr
                 key={headerGroup.id}
-                className="bg-slate-900/80 border-b border-slate-700 text-slate-400 text-xs font-semibold uppercase tracking-wider"
+                className="bg-slate-50 border-b border-slate-200 text-slate-500 text-xs font-semibold uppercase tracking-wider"
               >
                 {headerGroup.headers.map((header) => (
                   <th key={header.id} className="py-3.5 px-6">
@@ -78,7 +78,7 @@ export function Table<T>({
                       <div
                         className={
                           header.column.getCanSort()
-                            ? 'cursor-pointer select-none flex items-center gap-1.5 hover:text-white'
+                            ? 'cursor-pointer select-none flex items-center gap-1.5 hover:text-slate-900'
                             : ''
                         }
                         onClick={header.column.getToggleSortingHandler()}
@@ -97,12 +97,12 @@ export function Table<T>({
               </tr>
             ))}
           </thead>
-          <tbody className="divide-y divide-slate-700/60 text-sm text-slate-300">
+          <tbody className="divide-y divide-slate-100 text-sm text-slate-700">
             {isLoading ? (
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="py-12 text-center text-slate-400"
+                  className="py-12 text-center text-slate-500"
                 >
                   <div className="inline-flex items-center gap-3">
                     <div className="w-5 h-5 border-2 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin" />
@@ -113,7 +113,7 @@ export function Table<T>({
             ) : isError ? (
               <tr>
                 <td
-                  className="py-12 text-center text-red-400"
+                  className="py-12 text-center text-red-500"
                   colSpan={columns.length}
                 >
                   Gagal mengambil data dari server.
@@ -134,7 +134,7 @@ export function Table<T>({
             ) : (
               table.getRowModel().rows.map((row) => (
                 <tr
-                  className="hover:bg-slate-700/30 transition-colors"
+                  className="hover:bg-slate-50 transition-colors"
                   key={row.id}
                 >
                   {row.getVisibleCells().map((cell) => (
@@ -151,22 +151,22 @@ export function Table<T>({
           </tbody>
         </table>
       </div>
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 text-xs sm:text-sm text-slate-400">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 text-xs sm:text-sm text-slate-500">
         <div>
           Menampilkan{' '}
-          <span className="font-semibold text-white">
+          <span className="font-semibold text-slate-800">
             {table.getState().pagination.pageIndex *
               table.getState().pagination.pageSize +
               (table.getRowModel().rows.length > 0 ? 1 : 0)}
           </span>{' '}
           -{' '}
-          <span className="font-semibold text-white">
+          <span className="font-semibold text-slate-800">
             {table.getState().pagination.pageIndex *
               table.getState().pagination.pageSize +
               table.getRowModel().rows.length}
           </span>{' '}
           dari{' '}
-          <span className="font-semibold text-white">
+          <span className="font-semibold text-slate-800">
             {table.getFilteredRowModel().rows.length}
           </span>{' '}
           data
@@ -180,7 +180,7 @@ export function Table<T>({
           >
             <ChevronLeft className="w-4 h-4" />
           </Button>
-          <span className="text-xs font-semibold text-white px-2">
+          <span className="text-xs font-semibold text-slate-700 px-2">
             Halaman {table.getState().pagination.pageIndex + 1} dari{' '}
             {table.getPageCount() || 1}
           </span>
