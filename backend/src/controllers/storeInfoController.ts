@@ -30,18 +30,21 @@ export const getStoreInfo = async (req: Request, res: Response) => {
 
 export const updateStoreInfo = async (req: Request, res: Response) => {
     try {
-        const { name, whatsapp_number, wa_template_text, address, google_maps_url, operational_hours, instagram_url, facebook_url, description,  } = req.body;
+        const { name, whatsapp_number, wa_template_text, wa_tamplate_text, address, google_maps_url, operational_hours, opreational_hours, instagram_url, facebook_url, description  } = req.body;
 
         const cekStoreInfo = await prisma.storeInfo.findFirst();
         const logo = req.file ? req.file.path : cekStoreInfo?.logo;
 
+        const targetHours = operational_hours || opreational_hours;
+        const targetWaTemplate = wa_template_text || wa_tamplate_text;
+
         const payload = {
             name: name ? name.trim() : "Bandeng Sanjaya",
             whatsapp_number: whatsapp_number ? whatsapp_number.trim() : '',
-            wa_template_text: wa_template_text ? wa_template_text.trim() : '',
+            wa_template_text: targetWaTemplate ? targetWaTemplate.trim() : '',
             address: address ? address.trim() : '',
             google_maps_url: google_maps_url ? google_maps_url.trim() : null,
-            operational_hours: operational_hours ? operational_hours.trim() : '',
+            operational_hours: targetHours ? targetHours.trim() : '',
             instagram_url : instagram_url ? instagram_url.trim() : null,
             facebook_url : facebook_url ? facebook_url.trim() : null,
             description  : description ? description.trim() : "",
