@@ -31,10 +31,10 @@ const StoreInfoPage: React.FC = () => {
             reset({
                 name: storeInfo.name || '',
                 whatsapp_number: storeInfo.whatsapp_number || '',
-                wa_tamplate_text: storeInfo.wa_tamplate_text || '',
+                wa_template_text: storeInfo.wa_template_text || storeInfo.wa_tamplate_text || '',
                 address: storeInfo.address || '',
                 google_maps_url: storeInfo.google_maps_url || '',
-                opreational_hours: storeInfo.opreational_hours || '',
+                operational_hours: storeInfo.operational_hours || storeInfo.opreational_hours || '',
                 instagram_url: storeInfo.instagram_url || '',
                 facebook_url: storeInfo.facebook_url || '',
                 description: storeInfo.description || '',
@@ -103,13 +103,13 @@ const StoreInfoPage: React.FC = () => {
                     />
                     <InputText
                         label="Template Pesan WhatsApp"
-                        error={errors.wa_tamplate_text?.message}
-                        {...register('wa_tamplate_text')}
+                        error={errors.wa_template_text?.message || errors.wa_tamplate_text?.message}
+                        {...register('wa_template_text')}
                     />
                     <InputText
                         label="Jam Operasional"
-                        error={errors.opreational_hours?.message}
-                        {...register('opreational_hours')}
+                        error={errors.operational_hours?.message || errors.opreational_hours?.message}
+                        {...register('operational_hours')}
                     />
                     <InputText
                         label="URL Google Maps"

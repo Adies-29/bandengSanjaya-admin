@@ -54,10 +54,12 @@ export interface StoreInfo {
     id: number;
     name: string;
     whatsapp_number: string;
-    wa_tamplate_text: string;
+    wa_template_text?: string;
+    wa_tamplate_text?: string;
     address: string;
     google_maps_url: string;
-    opreational_hours:string;
+    operational_hours?: string;
+    opreational_hours?: string;
     instagram_url?: string | null;
     facebook_url?: string | null;
     description: string;
