@@ -208,15 +208,30 @@ const Banners: React.FC = () => {
               <label className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-slate-900/60 border border-dashed border-slate-600 hover:border-emerald-500 rounded-xl cursor-pointer text-slate-400 hover:text-white transition-all text-sm">
                 <Upload className="w-4 h-4" />
                 <span>Pilih Foto Banner</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  {...register('imageFile')}
-                  onChange={(e) => e.target.files?.[0] && setImagePreview(URL.createObjectURL(e.target.files[0]))}
-                />
+                {(() => {
+                  const imageRegister = register('imageFile', {
+                    required: !formModal.selectedData ? 'Gambar banner wajib diunggah' : false,
+                  });
+                  return (
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      {...imageRegister}
+                      onChange={(e) => {
+                        imageRegister.onChange(e);
+                        if (e.target.files?.[0]) {
+                          setImagePreview(URL.createObjectURL(e.target.files[0]));
+                        }
+                      }}
+                    />
+                  );
+                })()}
               </label>
             </div>
+            {errors.imageFile && (
+              <p className="text-xs text-red-500 mt-1">{errors.imageFile.message}</p>
+            )}
           </div>
 
           <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-700">
