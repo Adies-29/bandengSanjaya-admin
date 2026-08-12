@@ -72,11 +72,12 @@ export const getFeaturesById = async (req: Request, res: Response) => {
 export const createfeature = async (req: Request, res: Response) => {
     try {
         const { title, description, icon, is_active } = req.body;
+        const iconValue = req.file ? req.file.path : (icon ? icon.trim() : 'Award');
 
-        if(!title || !description || !icon) { 
+        if(!title || !description || !iconValue) { 
             return res.status(400).json({
                 status: 'Error',
-                message: 'Titile, description, icon wajib diisi',
+                message: 'Title, description, dan icon/gambar wajib diisi',
             });
         }
 
@@ -84,7 +85,7 @@ export const createfeature = async (req: Request, res: Response) => {
             data: {
                 title: title.trim(),
                 description: description.trim(),
-                icon: icon.trim(),
+                icon: iconValue,
                 is_active: is_active == undefined ? true : is_active === 'true' || is_active == true,
             },
         });
@@ -130,7 +131,13 @@ export const updateFeature = async (req: Request, res: Response) => {
         const updateData: any = {};
         if(title) updateData.title = title.trim();
         if(description) updateData.description = description.trim();
-        if(icon) updateData.icon = icon.trim();
+        
+        if (req.file) {
+            updateData.icon = req.file.path;
+        } else if (icon) {
+            updateData.icon = icon.trim();
+        }
+
         if(is_active !== undefined) {
             updateData.is_active = is_active === 'true' || is_active === true;
         }
@@ -138,7 +145,7 @@ export const updateFeature = async (req: Request, res: Response) => {
         const updatedFeature = await prisma.feature.update({
             where: { id: featureId },
             data: updateData,
-        })
+        });
 
         return res.status(200).json({
             status: 'Success',
