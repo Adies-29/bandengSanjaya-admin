@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://bandengsanjaya-admin-be.vercel.app/api';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
     headers: {
-        "Content-Type" : "application/json"
+        "Content-Type": "application/json"
     },
 });
 
@@ -29,10 +28,10 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if(error.response && error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
             localStorage.removeItem('token');
             localStorage.removeItem('admin');
-            if(window.location.pathname !== '/login') {
+            if (window.location.pathname !== '/login') {
                 window.location.href = '/login';
             }
         }

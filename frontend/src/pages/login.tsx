@@ -33,9 +33,12 @@ const Login: React.FC = () => {
             return res.data;
         },
         onSuccess: (data) => {
-            const { token, admin } = data.data;
-            login(token, admin);
-            navigate('/dashboard');
+            const responseData = data.data || data.daya;
+            if (responseData) {
+                const { token, admin } = responseData;
+                login(token, admin);
+                navigate('/categories');
+            }
         },
         onError: (err: any) => {
             const message = err.response?.data?.message || 'Gagal Login';
@@ -49,20 +52,20 @@ const Login: React.FC = () => {
     };
 
     return(
-        <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4">
-            <div className="max-w-md w-full bg-slate-800 rounded-2xl shadow-xl border border-slate-700 p-8">
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+            <div className="max-w-md w-full bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
                 <div className="text-center mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 font-bold text-xl flex items-center justify-center mx-auto mb-3">
-                    B5
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white font-bold text-xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                    BS
                     </div>
-                    <h1 className="text-2xl font-bold text-white tracking-wide">
+                    <h1 className="text-2xl font-bold text-slate-800 tracking-wide">
                         Bandeng Sanjaya
                     </h1>
-                    <p className="text-slate-400 text-sm mt-1">
+                    <p className="text-slate-500 text-sm mt-1">
                         Panel Admin Kelola Website Toko
                     </p>
-
-                    <Alert
+                </div>      
+                <Alert
                         message={errorMsg}
                         type="error"
                         onClose={() => setErrorMsg(null)}
@@ -100,7 +103,6 @@ const Login: React.FC = () => {
                 </div>
 
             </div>
-        </div>
     );
 
 };
