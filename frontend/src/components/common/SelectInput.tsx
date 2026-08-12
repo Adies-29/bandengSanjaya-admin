@@ -17,20 +17,20 @@ export const SelectInput = forwardRef<HTMLSelectElement, SelectInputProps>(
         return(
             <div className="w-full">
                 {label && (
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
                         {label}
                     </label>
                 )}
                 <select
                     ref={ref}
-                    className={`w-full px-4 py-3 rounded-xl focus:outline-none focus:ring-2 transition-all ${
-                        error ? 'border-red-500 focus:ring-red-500' : 'border-emerald-500 focus:ring-emerald-500'
+                    className={`w-full px-4 py-3 bg-slate-50 border rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:bg-white transition-all ${
+                        error ? 'border-red-500 focus:ring-red-500' : 'border-slate-200 focus:ring-emerald-500'
                 
                     } ${className}`}
                     {...props}
                 >
                     {options.map((opt) => (
-                        <option key={opt.value} value={opt.value} className="bg-black">
+                        <option key={opt.value} value={opt.value} className="bg-white text-slate-800">
                             {opt.label}
                         </option>
                     ))}
