@@ -20,8 +20,8 @@ import { Badge } from '../components/common/Badge';
 import { Table } from '../components/common/Table';
 
 interface BannerFormInputs {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   is_active: boolean;
   imageFile?: FileList;
 }
@@ -113,7 +113,7 @@ const Banners: React.FC = () => {
         header: 'Judul Banner',
         cell: (info) => (
           <div>
-            <div className="font-semibold text-slate-800">{info.getValue<string>()}</div>
+            <div className="font-semibold text-slate-800">{info.getValue<string>() || `Banner${info.row.original.id}`}</div>
             <span className="text-xs text-slate-500">{info.row.original.description || '-'}</span>
           </div>
         ),
@@ -175,14 +175,14 @@ const Banners: React.FC = () => {
             label="Judul Banner"
             placeholder="Contoh: Promo Spesial Hari Ini"
             error={errors.title?.message}
-            {...register('title', { required: 'Judul banner wajib diisi' })}
+            {...register('title')}
           />
 
           <InputTextArea
             label="Deskripsi Banner"
             placeholder="Contoh: Diskon 20% Pembelian Bandeng Presto 1kg"
             error={errors.description?.message}
-            {...register('description', { required: 'Deskripsi wajib diisi' })}
+            {...register('description')}
           />
 
           <div className="flex items-center gap-3 py-2">
