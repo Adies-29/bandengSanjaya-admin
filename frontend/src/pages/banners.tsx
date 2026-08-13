@@ -50,7 +50,7 @@ const Banners: React.FC = () => {
 
   const handleOpenEditModal = (banner: Banner) => {
     setImagePreview(banner.image);
-    setValue('title', banner.title);
+    setValue('title', banner.title || '');
     setValue('description', banner.description || '');
     setValue('is_active', banner.is_active);
     formModal.openModal(banner);
@@ -59,8 +59,8 @@ const Banners: React.FC = () => {
   const saveMutation = useMutation({
     mutationFn: async (data: BannerFormInputs) => {
       const formData = new FormData();
-      formData.append('title', data.title);
-      formData.append('description', data.description);
+      formData.append('title', data.title || '');
+      formData.append('description', data.description || '');
       formData.append('is_active', String(data.is_active));
 
       if (data.imageFile?.[0]) {
