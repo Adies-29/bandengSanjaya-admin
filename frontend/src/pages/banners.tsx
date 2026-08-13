@@ -59,8 +59,8 @@ const Banners: React.FC = () => {
   const saveMutation = useMutation({
     mutationFn: async (data: BannerFormInputs) => {
       const formData = new FormData();
-      formData.append('title', data.title);
-      formData.append('description', data.description);
+      formData.append('title', data.title || '');
+      formData.append('description', data.description || '');
       formData.append('is_active', String(data.is_active));
 
       if (data.imageFile?.[0]) {
