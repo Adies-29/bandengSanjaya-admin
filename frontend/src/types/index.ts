@@ -72,8 +72,8 @@ export interface StoreInfo {
 export interface Banner {
     id: number;
     image: string;
-    title: string;
-    description: string;
+    title?: string | null;
+    description?: string | null;
     is_active: boolean;
     created_at?: string;
     updated_at?: string;
