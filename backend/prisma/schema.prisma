@@ -67,8 +67,8 @@ model StoreInfo {
 model Banner {
   id          Int      @id @default(autoincrement())
   image       String
-  title       String
-  description String   @db.Text
+  title       String?
+  description String?   @db.Text
   is_active   Boolean  @default(true)
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt

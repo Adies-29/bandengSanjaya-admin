@@ -75,13 +75,6 @@ export const createBanner = async (req: Request, res: Response) => {
         const { title, description, is_active } = req.body;
         const image = req.file ? req.file.path : req.body.image;
 
-        if(!title || !description) { 
-            return res.status(400).json({
-                status: 'Error',
-                message: 'Title dan description banner wajib diisi',
-            });
-        }
-
         if(!image) {
             return res.status(400).json({
                 status: 'Error',
